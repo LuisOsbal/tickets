@@ -3,7 +3,7 @@ class Api::V1::PurchasesController < Api::V1::BaseController
 
   def create
     purchase = Purchase.create(purchases_params)
-    buy = Purchase.update(total: total_with_commission)
+    buy = purchase.update(total: total_with_commission)
     response_success
   end
 
