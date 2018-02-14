@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213151936) do
+ActiveRecord::Schema.define(version: 20180213234213) do
 
   create_table "commissions", force: :cascade do |t|
     t.string "payment_form"
@@ -28,6 +28,25 @@ ActiveRecord::Schema.define(version: 20180213151936) do
     t.integer "number_of_tickets"
     t.string "place"
     t.float "pricing_by_ticket"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "number_of_tickets"
+    t.string "commission_type"
+    t.integer "total"
+    t.integer "event_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_purchases_on_event_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "nickname"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

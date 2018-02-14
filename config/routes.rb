@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :events
       resources :commissions
       resources :users
+      resources :purchases
     end
   end
 end

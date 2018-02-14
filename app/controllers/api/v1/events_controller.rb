@@ -1,6 +1,6 @@
 class Api::V1::EventsController < Api::V1::BaseController
   before_action :find_events, only: %i[index create]
-  before_action :find_event, only: %i[update show destroy]
+  before_action :find_event, only: %i[update show destroy ticket_with_commission]
 
   def index
     response_success events: @events.map(&:api_params)
@@ -37,7 +37,8 @@ class Api::V1::EventsController < Api::V1::BaseController
             :name,
             :event_date,
             :number_of_tickets,
-            :place
+            :place,
+            :pricing_by_ticket
           )
   end
 
@@ -48,4 +49,13 @@ class Api::V1::EventsController < Api::V1::BaseController
   def find_event
     @event = Event.find(params[:id])
   end
+  #
+  # def ticket_with_commission
+  #   @pricing_by_ticket = @event.pricing_by_ticket
+  #   @payment_form_commission = @event.commissions.where(payment_form: params["payment_form"])
+  # end
+  #
+  # def calculate_total
+  #   @pricing_by_ticket
+  # end
 end

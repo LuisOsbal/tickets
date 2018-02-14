@@ -1,7 +1,7 @@
 class Commission < ApplicationRecord
   belongs_to :event
 
-  def api_params
+def api_params
     {
       id: id,
       payment_form: payment_form,
