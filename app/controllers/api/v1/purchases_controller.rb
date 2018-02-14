@@ -1,18 +1,10 @@
 class Api::V1::PurchasesController < Api::V1::BaseController
-  before_action :find_event, only: %i[index create]
-
-  def index
-    response_success total_purchase: total_with_commission
-  end
+  before_action :find_event, only: %i[create]
 
   def create
     purchase = Purchase.create(purchases_params)
     buy = Purchase.update(total: total_with_commission)
-    response_success total_purchase: buy.api_params
-  end
-
-  def buy
-
+    response_success
   end
 
   private
